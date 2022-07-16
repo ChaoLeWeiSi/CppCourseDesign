@@ -1,0 +1,29 @@
+cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
+
+project(Lab1 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+include(GNUInstallDirs)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+
+add_executable(Lab1 "")
+
+target_sources(Lab1
+  PRIVATE
+    MySocket.cpp
+    Express.cpp
+    User.cpp
+    Platform.cpp
+    PlatformShow.cpp
+    main.cpp
+  )
+  if(WIN32)
+  target_link_libraries(Lab1 wsock32 ws2_32)
+endif()
